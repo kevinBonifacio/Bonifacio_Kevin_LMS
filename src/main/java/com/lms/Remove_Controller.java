@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
  * Remove_Controller.java
  * Controller for the Remove_Scene.fxml
  */
-public class Remove_Controller implements Initializable {
+public class Remove_Controller {
     private Library library;
 
     @FXML
@@ -122,8 +122,4 @@ public class Remove_Controller implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
 }

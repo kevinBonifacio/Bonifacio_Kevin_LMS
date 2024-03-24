@@ -3,5 +3,6 @@ module com.lms.controller {
     requires javafx.fxml;
 
     exports com.lms;
+    exports com.lms.model;
     opens com.lms to javafx.fxml;
 }
