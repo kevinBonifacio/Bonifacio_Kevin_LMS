@@ -1,5 +1,6 @@
 package com.lms;
 
+import com.lms.model.DatabaseConnection;
 import com.lms.model.Library;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 /*
  * Kevin Bonifacio
@@ -21,17 +23,14 @@ import java.io.IOException;
  * Controller for the Add_Scene.fxml
  */
 public class Add_Controller {
-    private Library library;
+
+    Library library = new Library();
 
     @FXML
     private TextField fileInput;
 
     @FXML
     private Label addLabel;
-
-    public void setLibrary(Library library) {
-        this.library = library;
-    }
 
     /*
      * method: goBack
@@ -43,9 +42,6 @@ public class Add_Controller {
     public void goBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Main_Scene.fxml"));
         Parent root = loader.load();
-
-        Main_Controller mainController = loader.getController();
-        mainController.setCollection(library.getCollection());
 
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

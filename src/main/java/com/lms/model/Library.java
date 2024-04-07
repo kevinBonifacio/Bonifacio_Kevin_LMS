@@ -3,6 +3,10 @@ package com.lms.model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -31,6 +35,7 @@ public class Library {
      * return: none
      * purpose: add books to the collection array.
      */
+
     public boolean addBooksFromFile(String fileName) {
         boolean success = false;
         try {
@@ -38,16 +43,42 @@ public class Library {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 2) {
+                if (parts.length == 3) {
                     String title = parts[0].trim();
                     String author = parts[1].trim();
-                    collection.add(new Book(title, author));
+                    String genre = parts[2].trim();
+                    collection.add(new Book(title, author, genre));
                 }
             }
-            System.out.println("Books added from file.");
+            System.out.println("Books added from file.\n" + collection);
             success = true;
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
+        }
+
+        //upload data to the database
+        DatabaseConnection conn = new DatabaseConnection();
+        Connection connectDB = conn.connect();
+
+        try {
+            for (Book book : collection) {
+                String barcode = book.getBarcode();
+                String title = book.getTitle();
+                String author = book.getAuthor();
+                String genre = book.getGenre();
+
+                String sqlQuery = "INSERT INTO Book (Barcode, Title, Author, Genre, Status, Due_Date) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement ps = connectDB.prepareStatement(sqlQuery);
+                ps.setString(1, barcode);
+                ps.setString(2, title);
+                ps.setString(3, author);
+                ps.setString(4, genre);
+                ps.setInt(5, 0);
+                ps.executeUpdate();
+            }
+
+        } catch ( Exception e ) {
+            System.err.println(e.getMessage());
         }
 
         return success;

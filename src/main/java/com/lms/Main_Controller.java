@@ -40,9 +40,6 @@ public class Main_Controller implements Initializable{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Add_Scene.fxml"));
         Parent root = loader.load();
 
-        Add_Controller addController = loader.getController();
-        addController.setLibrary(library);
-
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -119,9 +116,6 @@ public class Main_Controller implements Initializable{
     public void switchToDisplay_Scene(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Display_Scene.fxml"));
         Parent root = loader.load();
-
-        Display_Controller displayController = loader.getController();
-        displayController.setCollection(library.getCollection());
 
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -13,27 +13,40 @@ import java.util.Random;
  * ensuring an easy and organized access to the variables.
  */
 public class Book {
+    private String barcode;
     private final String title;
     private final String author;
-    private String barcode;
+    private final String genre;
     private boolean checkedOut;
     private LocalDate dueDate;
 
-    public Book(String a_title, String a_name) {
+    public Book(String a_title, String a_name, String a_genre) {
         this.title = a_title;
         this.author = a_name;
+        this.genre = a_genre;
         this.checkedOut = false;
         generateCode(a_title, a_name);
     }
 
+    public Book(String barcode, String a_title, String a_name, String a_genre) {
+        this.title = a_title;
+        this.author = a_name;
+        this.genre = a_genre;
+        this.checkedOut = false;
+        this.barcode = barcode;
+    }
+
+    public String getBarcode() {
+        return this.barcode;
+    }
     public String getTitle() {
         return this.title;
     }
     public String getAuthor() {
         return this.author;
     }
-    public String getBarcode() {
-        return this.barcode;
+    public String getGenre() {
+        return this.genre;
     }
     public LocalDate getDueDate() {
         return this.dueDate;
@@ -41,7 +54,6 @@ public class Book {
     public boolean isCheckedOut() {
         return this.checkedOut;
     }
-
     public void checkOut() {
         this.checkedOut = true;
     }
@@ -58,7 +70,7 @@ public class Book {
      * return: none
      * purpose: Generates a barcode using the title first letter, the author first initial and a random number.
      */
-    public void generateCode(String a_title, String a_name) {
+    private void generateCode(String a_title, String a_name) {
         Random random = new Random();
         this.barcode = a_title.charAt(0)+ "-" + (random.nextInt(900) + 100) + "-" + a_name.charAt(0);
     }
@@ -69,6 +81,7 @@ public class Book {
                 "Barcode: " + barcode +
                 ", Title: " + title +
                 ", Author: " + author +
+                ", Genre: " + genre +
                 ", Checked Out: " + checkedOut;
         if (this.dueDate == null) {
             return bookStr;
