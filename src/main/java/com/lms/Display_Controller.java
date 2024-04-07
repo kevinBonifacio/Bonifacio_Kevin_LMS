@@ -14,8 +14,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -55,7 +57,7 @@ public class Display_Controller implements Initializable {
         DatabaseConnection conn = new DatabaseConnection();
         Connection connectDB = conn.connect();
 
-        String sqlQuery = "SELECT Barcode, Title, Author, Genre FROM Book";
+        String sqlQuery = "SELECT Barcode, Title, Author, Genre, Status, Due_Date FROM Book";
 
         try {
             Statement statement = connectDB.createStatement();
@@ -66,11 +68,18 @@ public class Display_Controller implements Initializable {
                 String title = queryOutput.getString("Title");
                 String author = queryOutput.getString("Author");
                 String genre = queryOutput.getString("Genre");
+                boolean status = queryOutput.getBoolean("Status");
 
-                this.collection.add(new Book(barcode, title, author, genre));
+                if (queryOutput.getDate("Due_Date") != null) {
+                    LocalDate dueDate = queryOutput.getDate("Due_Date").toLocalDate();
+                    this.collection.add(new Book(barcode, title, author, genre, status, dueDate));
+                } else {
+                    this.collection.add(new Book(barcode, title, author, genre, status, null));
+                }
             }
 
             textDisplay.getItems().addAll(collection);
+            System.out.println(collection);
 
         } catch (Exception e) {
             System.err.println(e.getMessage());

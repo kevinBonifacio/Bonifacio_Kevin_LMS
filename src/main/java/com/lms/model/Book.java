@@ -1,7 +1,6 @@
 package com.lms.model;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 /*
@@ -17,23 +16,25 @@ public class Book {
     private final String title;
     private final String author;
     private final String genre;
-    private boolean checkedOut;
+    private boolean status;
     private LocalDate dueDate;
 
-    public Book(String a_title, String a_name, String a_genre) {
+    public Book(String a_title, String a_name, String a_genre, boolean status, LocalDate a_dueDate) {
+        generateCode(a_title, a_name);
         this.title = a_title;
         this.author = a_name;
         this.genre = a_genre;
-        this.checkedOut = false;
-        generateCode(a_title, a_name);
+        this.status = status;
+        this.dueDate = a_dueDate;
     }
 
-    public Book(String barcode, String a_title, String a_name, String a_genre) {
+    public Book(String barcode, String a_title, String a_name, String a_genre, boolean status, LocalDate a_dueDate) {
+        this.barcode = barcode;
         this.title = a_title;
         this.author = a_name;
         this.genre = a_genre;
-        this.checkedOut = false;
-        this.barcode = barcode;
+        this.status = status;
+        this.dueDate = a_dueDate;
     }
 
     public String getBarcode() {
@@ -51,14 +52,14 @@ public class Book {
     public LocalDate getDueDate() {
         return this.dueDate;
     }
-    public boolean isCheckedOut() {
-        return this.checkedOut;
+    public boolean isCheckout() {
+        return this.status;
     }
     public void checkOut() {
-        this.checkedOut = true;
+        this.status = true;
     }
     public void checkIn() {
-        this.checkedOut = false;
+        this.status = false;
     }
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
@@ -82,11 +83,11 @@ public class Book {
                 ", Title: " + title +
                 ", Author: " + author +
                 ", Genre: " + genre +
-                ", Checked Out: " + checkedOut;
+                ", Checked Out: " + status;
         if (this.dueDate == null) {
             return bookStr;
         } else {
-            return bookStr + ", Due Date: " + dueDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            return bookStr + ", Due Date: " + dueDate;
         }
     }
 }

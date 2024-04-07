@@ -56,10 +56,6 @@ public class Main_Controller implements Initializable{
     public void switchToRemove_Scene(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Remove_Scene.fxml"));
         Parent root = loader.load();
-
-        Remove_Controller removeController = loader.getController();
-        removeController.setLibrary(library);
-
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);

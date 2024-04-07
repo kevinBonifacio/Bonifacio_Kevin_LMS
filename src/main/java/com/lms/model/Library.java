@@ -5,8 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -19,11 +17,10 @@ import java.util.ArrayList;
  * This class creates a library of books that will contain all the books objects from the text file provided.
  */
 public class Library {
-    private ArrayList<Book> collection = new ArrayList<>();
+    DatabaseConnection conn = new DatabaseConnection();
+    Connection connectDB = conn.connect();
 
-    public ArrayList<Book> getCollection() {
-        return this.collection;
-    }
+    private ArrayList<Book> collection = new ArrayList<>();
 
     public void updateCollection(ArrayList<Book> collection) {
         this.collection = collection;
@@ -47,7 +44,7 @@ public class Library {
                     String title = parts[0].trim();
                     String author = parts[1].trim();
                     String genre = parts[2].trim();
-                    collection.add(new Book(title, author, genre));
+                    collection.add(new Book(title, author, genre, false, null));
                 }
             }
             System.out.println("Books added from file.\n" + collection);
@@ -57,9 +54,6 @@ public class Library {
         }
 
         //upload data to the database
-        DatabaseConnection conn = new DatabaseConnection();
-        Connection connectDB = conn.connect();
-
         try {
             for (Book book : collection) {
                 String barcode = book.getBarcode();
@@ -93,11 +87,21 @@ public class Library {
     public boolean removeBookByBarcode(String barcode) {
         boolean success = false;
 
-        if (collection.removeIf(book -> book.getBarcode().equalsIgnoreCase(barcode))) {
-            System.out.println("Book removed.");
-            success = true;
-        } else {
-            System.out.println("This barcode is not part of the collection.");
+        try {
+            String sqlQuery = "DELETE FROM Book WHERE Barcode = ?";
+            PreparedStatement ps = connectDB.prepareStatement(sqlQuery);
+            ps.setString(1, barcode);
+            int rowsDeleted = ps.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("Book removed.");
+                success = true;
+            } else {
+                System.out.println("This barcode is not part of the collection.");
+            }
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
 
         return success;
@@ -112,11 +116,21 @@ public class Library {
     public boolean removeBookByTitle(String title) {
         boolean success = false;
 
-        if (collection.removeIf(book -> book.getTitle().equalsIgnoreCase(title))) {
-            System.out.println("Book removed.");
-            success = true;
-        } else {
-            System.out.println("This title is not part of the collection.");
+        try {
+            String sqlQuery = "DELETE FROM Book WHERE Title = ?";
+            PreparedStatement ps = connectDB.prepareStatement(sqlQuery);
+            ps.setString(1, title);
+
+            int rowsDeleted = ps.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("Book removed.");
+                success = true;
+            } else {
+                System.out.println("This title is not part of the collection.");
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
 
         return success;
@@ -128,20 +142,33 @@ public class Library {
      * return: String
      * purpose: allows user to borrow (check out) books.
      */
-    public String checkOutBook(String title) {
+    public String checkOutBook(String title, ArrayList<Book> books) {
         boolean foundMatch = false;
         String dateString = null;
         LocalDate dueDate;
 
-        for (Book book : collection) {
-            if (book.getTitle().equalsIgnoreCase(title) && !book.isCheckedOut()) {
+        for (Book book : books) {
+            if (book.getTitle().equalsIgnoreCase(title) && !book.isCheckout()) {
                 book.checkOut();
                 dueDate = LocalDate.now().plusWeeks(4);
                 book.setDueDate(dueDate);
+
+                try {
+                    String sqlQuery = "UPDATE Book SET Status = ?, Due_Date = ? WHERE Title = ?";
+                    PreparedStatement ps = connectDB.prepareStatement(sqlQuery);
+                    ps.setInt(1, 1);
+                    ps.setDate(2, java.sql.Date.valueOf(dueDate));
+                    ps.setString(3, title);
+                    ps.executeUpdate();
+
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
+
                 dateString = "Book checked out! Due date: " + dueDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
                 foundMatch = true;
                 break;
-            } else if (book.getTitle().equalsIgnoreCase(title) && book.isCheckedOut()) {
+            } else if (book.getTitle().equalsIgnoreCase(title) && book.isCheckout()) {
                 dateString = "This book has already been borrowed";
                 foundMatch = true;
                 break;
@@ -161,18 +188,31 @@ public class Library {
      * return: String
      * purpose: allows user to return (check in) books.
      */
-    public String checkInBook(String title) {
+    public String checkInBook(String title, ArrayList<Book> books) {
         boolean foundMatch = false;
         String dateString = null;
 
-        for (Book book : collection) {
-            if (book.getTitle().equalsIgnoreCase(title) && book.isCheckedOut()) {
+        for (Book book : books) {
+            if (book.getTitle().equalsIgnoreCase(title) && book.isCheckout()) {
                 book.checkIn();
-                dateString = "Book checked in!";
                 book.setDueDate(null);
+
+                try {
+                    String sqlQuery = "UPDATE Book SET Status = ?, Due_Date = ? WHERE Title = ?";
+                    PreparedStatement ps = connectDB.prepareStatement(sqlQuery);
+                    ps.setInt(1, 0);
+                    ps.setDate(2, null);
+                    ps.setString(3, title);
+                    ps.executeUpdate();
+
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
+
+                dateString = "Book checked in!";
                 foundMatch = true;
                 break;
-            } else if (book.getTitle().equalsIgnoreCase(title) && !book.isCheckedOut()) {
+            } else if (book.getTitle().equalsIgnoreCase(title) && !book.isCheckout()) {
                 dateString = "This book has already been returned";
                 foundMatch = true;
                 break;
