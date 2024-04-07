@@ -53,7 +53,7 @@ public class Library {
             System.err.println("Error reading file: " + e.getMessage());
         }
 
-        //upload data to the database
+        //upload data to the book
         try {
             for (Book book : collection) {
                 String barcode = book.getBarcode();

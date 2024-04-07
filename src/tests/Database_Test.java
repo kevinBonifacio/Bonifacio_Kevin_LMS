@@ -5,7 +5,7 @@ public class Database_Test {
         try {
             // db parameters
             String url = "jdbc:sqlite:C:/sqlite/Library.db";
-            // create a connection to the database
+            // create a connection to the book
             conn = DriverManager.getConnection(url);
 
             System.out.println("Connection to SQLite has been established.");
