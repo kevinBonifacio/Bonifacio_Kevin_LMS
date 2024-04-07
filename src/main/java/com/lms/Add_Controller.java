@@ -18,7 +18,7 @@ import java.sql.Connection;
 /*
  * Kevin Bonifacio
  * CEN 3024 - Software Development 1
- * 24 March 2024
+ * 07 April 2024
  * Add_Controller.java
  * Controller for the Add_Scene.fxml
  */
@@ -35,7 +35,7 @@ public class Add_Controller {
     /*
      * method: goBack
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: switch the current scene back to the Main_Scene.
      */
     @FXML
@@ -52,7 +52,7 @@ public class Add_Controller {
     /*
      * method: addBooks
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: calls the addBooksFromFile() method.
      */
     @FXML

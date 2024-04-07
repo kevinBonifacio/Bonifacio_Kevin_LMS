@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 /*
  * Kevin Bonifacio
  * CEN 3024 - Software Development 1
- * 24 March 2024
+ * 07 April 2024
  * CheckIn_Controller.java
  * Controller for the CheckIn_Scene.fxml
  */
@@ -47,7 +47,7 @@ public class CheckIn_Controller implements Initializable {
     /*
      * method: goBack
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: switch the current scene back to the Main_Scene.
      */
     @FXML
@@ -63,7 +63,7 @@ public class CheckIn_Controller implements Initializable {
     /*
      * method: checkIn
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: calls the checkInBook() method.
      */
     public void checkIn() {
@@ -98,9 +98,6 @@ public class CheckIn_Controller implements Initializable {
                     collection.add(new Book(barcode, title, author, genre, status, null));
                 }
             }
-
-            library.updateCollection(collection);
-            System.out.println(library);
 
         } catch (Exception e) {
             System.err.println(e.getMessage());

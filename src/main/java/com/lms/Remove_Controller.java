@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 /*
  * Kevin Bonifacio
  * CEN 3024 - Software Development 1
- * 24 March 2024
+ * 07 April 2024
  * Remove_Controller.java
  * Controller for the Remove_Scene.fxml
  */
@@ -56,7 +56,7 @@ public class Remove_Controller implements Initializable {
     /*
      * method: goBack
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: switch the current scene back to the Main_Scene.
      */
     public void goBack(ActionEvent event) throws IOException {
@@ -71,7 +71,7 @@ public class Remove_Controller implements Initializable {
     /*
      * method: removeBook
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: gets user input from the textField and the toggleButton,
      * then calls the appropriate method to removeBookByBarcode or removeBookByTitle.
      */
@@ -147,8 +147,6 @@ public class Remove_Controller implements Initializable {
                     this.collection.add(new Book(barcode, title, author, genre, status, null));
                 }
             }
-
-            System.out.println(collection);
 
         } catch (Exception e) {
             System.err.println(e.getMessage());

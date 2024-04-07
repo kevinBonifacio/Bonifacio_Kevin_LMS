@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 /*
  * Kevin Bonifacio
  * CEN 3024 - Software Development 1
- * 24 March 2024
+ * 07 April 2024
  * Main_Controller.java
  * Controller for the Main_Scene.fxml
  */
@@ -32,7 +32,7 @@ public class Main_Controller implements Initializable{
     /*
      * method: switchToAdd_Scene
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: switch the current scene to Add_Scene.
      */
     @FXML
@@ -49,7 +49,7 @@ public class Main_Controller implements Initializable{
     /*
      * method: switchToRemove_Scene
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: switch the current scene to Remove_Scene.
      */
     @FXML
@@ -65,7 +65,7 @@ public class Main_Controller implements Initializable{
     /*
      * method: switchToCheckOut_Scene
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: switch the current scene to CheckOut_Scene.
      */
     @FXML
@@ -85,7 +85,7 @@ public class Main_Controller implements Initializable{
     /*
      * method: switchToCheckIn_Scene
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: switch the current scene to CheckIn_Scene.
      */
     @FXML
@@ -105,7 +105,7 @@ public class Main_Controller implements Initializable{
     /*
      * method: switchToDisplay_Scene
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: switch the current scene to Display_Scene.
      */
     @FXML

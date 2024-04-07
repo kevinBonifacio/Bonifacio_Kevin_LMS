@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /*
  * Kevin Bonifacio
  * CEN 3024 - Software Development 1
- * 24 March 2024
+ * 07 April 2024
  * Library.java
  * This class creates a library of books that will contain all the books objects from the text file provided.
  */
@@ -29,7 +29,7 @@ public class Library {
     /*
      * method: addBooksFromFile
      * parameters: String
-     * return: none
+     * return: boolean
      * purpose: add books to the collection array.
      */
 

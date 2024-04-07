@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 /*
  * Kevin Bonifacio
  * CEN 3024 - Software Development 1
- * 24 March 2024
+ * 07 April 2024
  * Display_Controller.java
  * Controller for the Display_Scene.fxml
  */

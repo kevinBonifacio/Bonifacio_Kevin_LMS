@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 /*
  * Kevin Bonifacio
  * CEN 3024 - Software Development 1
- * 24 March 2024
+ * 07 April 2024
  * CheckOut_Controller.java
  * Controller for the CheckOut_Scene.fxml
  */
@@ -48,7 +48,7 @@ public class CheckOut_Controller implements Initializable {
     /*
      * method: goBack
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: switch the current scene back to the Main_Scene.
      */
     @FXML
@@ -64,7 +64,7 @@ public class CheckOut_Controller implements Initializable {
     /*
      * method: checkOut
      * parameters: ActionEvent
-     * return: void
+     * return: none
      * purpose: calls the checkOutBook() method.
      */
     public void checkOut() {
@@ -99,9 +99,6 @@ public class CheckOut_Controller implements Initializable {
                     collection.add(new Book(barcode, title, author, genre, status, null));
                 }
             }
-
-            library.updateCollection(collection);
-            System.out.println(library);
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
