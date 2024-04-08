@@ -13,9 +13,9 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#004c94" height="156.0" layoutX="2.0" layoutY="400.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#004c94" height="156.0" layoutX="-6.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="290.0" layoutY="155.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
-      <VBox alignment="CENTER" layoutX="245.0" layoutY="191.0" spacing="20.0">
+      <VBox alignment="CENTER" layoutX="173.0" layoutY="198.0" spacing="20.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="299.0" text="Enter File Name" textAlignment="CENTER" wrapText="true">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="455.0" text="Enter Database Name" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Bookman Old Style" size="36.0" />
                </font>

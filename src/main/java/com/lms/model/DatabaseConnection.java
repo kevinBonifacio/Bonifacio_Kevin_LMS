@@ -9,7 +9,7 @@ import java.sql.Statement;
  * CEN 3024 - Software Development 1
  * 07 April 2024
  * DatabaseConnection.java
- * This class establishes a connection to the library book.
+ * This class establishes a connection to the database.
  */
 public class DatabaseConnection {
     public Connection conn = null;
