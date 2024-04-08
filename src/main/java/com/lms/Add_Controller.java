@@ -57,11 +57,11 @@ public class Add_Controller {
      */
     @FXML
     public void addBooks() {
-        String fileName = fileInput.getText();
-        if(library.addBooksFromFile(fileName)) {
+        String dataBaseName = fileInput.getText();
+        if(library.addBooks(dataBaseName)) {
             addLabel.setText("Books added successfully.");
         } else {
-            addLabel.setText("File not found");
+            addLabel.setText("Database not found");
         }
         addLabel.setVisible(true);
     }

@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -30,46 +32,60 @@ public class Library {
      * method: addBooksFromFile
      * parameters: String
      * return: boolean
-     * purpose: add books to the collection array.
+     * purpose: add books from a sample database (Library) to the application database.
      */
 
-    public boolean addBooksFromFile(String fileName) {
+    public boolean addBooks(String dataBaseName) {
         boolean success = false;
+
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 3) {
-                    String title = parts[0].trim();
-                    String author = parts[1].trim();
-                    String genre = parts[2].trim();
-                    collection.add(new Book(title, author, genre, false, null));
+            //fetch data from the test dataBase (Library)
+            Connection connectNewDB = conn.connect(dataBaseName);
+            String selectQuery = "SELECT Barcode, Title, Author, Genre, Status, Due_Date FROM Book";
+
+            Statement statement = connectNewDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(selectQuery);
+
+            while (queryOutput.next()) {
+                String barcode = queryOutput.getString("Barcode");
+                String title = queryOutput.getString("Title");
+                String author = queryOutput.getString("Author");
+                String genre = queryOutput.getString("Genre");
+                boolean status = queryOutput.getBoolean("Status");
+
+                if (queryOutput.getDate("Due_Date") != null) {
+                    LocalDate dueDate = queryOutput.getDate("Due_Date").toLocalDate();
+                    this.collection.add(new Book(barcode, title, author, genre, status, dueDate));
+                } else {
+                    this.collection.add(new Book(barcode, title, author, genre, status, null));
                 }
             }
-            System.out.println("Books added from file.\n" + collection);
-            success = true;
-        } catch (IOException e) {
-            System.err.println("Error reading file: " + e.getMessage());
-        }
 
-        //upload data to the book
-        try {
+            //upload data to the database
             for (Book book : collection) {
                 String barcode = book.getBarcode();
                 String title = book.getTitle();
                 String author = book.getAuthor();
                 String genre = book.getGenre();
+                boolean status = book.isCheckout();
+                LocalDate dueDate = book.getDueDate();
 
-                String sqlQuery = "INSERT INTO Book (Barcode, Title, Author, Genre, Status, Due_Date) VALUES (?, ?, ?, ?, ?, ?)";
-                PreparedStatement ps = connectDB.prepareStatement(sqlQuery);
+
+                String insertQuery = "INSERT INTO Book (Barcode, Title, Author, Genre, Status, Due_Date) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement ps = connectDB.prepareStatement(insertQuery);
+
                 ps.setString(1, barcode);
                 ps.setString(2, title);
                 ps.setString(3, author);
                 ps.setString(4, genre);
-                ps.setInt(5, 0);
+                ps.setBoolean(5, status);
+                if (dueDate != null) {
+                    ps.setDate(6, java.sql.Date.valueOf(dueDate));
+                }
                 ps.executeUpdate();
             }
+
+            success = true;
 
         } catch ( Exception e ) {
             System.err.println(e.getMessage());

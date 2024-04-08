@@ -15,7 +15,20 @@ public class DatabaseConnection {
     public Connection conn = null;
 
     public Connection connect() {
-        String url = "jdbc:sqlite:Library.db";
+        String url = "jdbc:sqlite:database.db";
+
+        try {
+            conn = DriverManager.getConnection(url);
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        return conn;
+    }
+
+    public Connection connect(String dataBaseName) {
+        String url = "jdbc:sqlite:" + dataBaseName + ".db";
 
         try {
             conn = DriverManager.getConnection(url);
