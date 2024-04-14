@@ -8,10 +8,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/*
- * Kevin Bonifacio
+/**
+ * @author Kevin Bonifacio
  * CEN 3024 - Software Development 1
- * 07 April 2024
+ * 14 April 2024
  * App.java
  * This application will prompt the user to select one of the Library Management System options.
  * An 'add' option to add new books to the collection. Two 'remove' options to remove books from the collection by barcode or title.
@@ -32,6 +32,10 @@ public class App extends Application {
         stage.show();
     }
 
+    /**
+     * method: main
+     * purpose: Initializes the application.
+     */
     public static void main(String[] args) {
         launch();
     }

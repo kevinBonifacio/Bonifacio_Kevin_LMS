@@ -15,10 +15,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-/*
- * Kevin Bonifacio
+/**
+ * @author Kevin Bonifacio
  * CEN 3024 - Software Development 1
- * 07 April 2024
+ * 14 April 2024
  * Main_Controller.java
  * Controller for the Main_Scene.fxml
  */
@@ -29,11 +29,10 @@ public class Main_Controller implements Initializable{
         this.library.updateCollection(collection);
     }
 
-    /*
+    /**
      * method: switchToAdd_Scene
-     * parameters: ActionEvent
-     * return: none
-     * purpose: switch the current scene to Add_Scene.
+     * @param event
+     * purpose: Switch the current scene to Add_Scene.
      */
     @FXML
     public void switchToAdd_Scene(ActionEvent event) throws IOException {
@@ -46,11 +45,10 @@ public class Main_Controller implements Initializable{
         stage.show();
     }
 
-    /*
+    /**
      * method: switchToRemove_Scene
-     * parameters: ActionEvent
-     * return: none
-     * purpose: switch the current scene to Remove_Scene.
+     * @param event
+     * purpose: Switch the current scene to Remove_Scene.
      */
     @FXML
     public void switchToRemove_Scene(ActionEvent event) throws IOException {
@@ -62,11 +60,10 @@ public class Main_Controller implements Initializable{
         stage.show();
     }
 
-    /*
+    /**
      * method: switchToCheckOut_Scene
-     * parameters: ActionEvent
-     * return: none
-     * purpose: switch the current scene to CheckOut_Scene.
+     * @param event
+     * purpose: Switch the current scene to CheckOut_Scene.
      */
     @FXML
     public void switchToCheckOut_Scene(ActionEvent event) throws IOException {
@@ -82,11 +79,10 @@ public class Main_Controller implements Initializable{
         stage.show();
     }
 
-    /*
+    /**
      * method: switchToCheckIn_Scene
-     * parameters: ActionEvent
-     * return: none
-     * purpose: switch the current scene to CheckIn_Scene.
+     * @param event
+     * purpose: Switch the current scene to CheckIn_Scene.
      */
     @FXML
     public void switchToCheckIn_Scene(ActionEvent event) throws IOException {
@@ -102,11 +98,10 @@ public class Main_Controller implements Initializable{
         stage.show();
     }
 
-    /*
+    /**
      * method: switchToDisplay_Scene
-     * parameters: ActionEvent
-     * return: none
-     * purpose: switch the current scene to Display_Scene.
+     * @param event
+     * purpose: Switch the current scene to Display_Scene.
      */
     @FXML
     public void switchToDisplay_Scene(ActionEvent event) throws IOException {
@@ -119,6 +114,11 @@ public class Main_Controller implements Initializable{
         stage.show();
     }
 
+    /**
+     * method: exit_out
+     * @param event
+     * purpose: Exit the application.
+     */
     @FXML
     public void exit_out(ActionEvent event) {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
