@@ -1,1 +1,0 @@
-moduleSearchIndex = [{"l":"com.lms.controller"}];updateSearchResults();

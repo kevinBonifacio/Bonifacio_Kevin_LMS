@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.lms.controller","l":"com.lms"},{"m":"com.lms.controller","l":"com.lms.model"}];updateSearchResults();

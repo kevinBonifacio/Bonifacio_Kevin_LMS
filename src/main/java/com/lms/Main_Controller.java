@@ -22,12 +22,7 @@ import java.util.ResourceBundle;
  * Main_Controller.java
  * Controller for the Main_Scene.fxml
  */
-public class Main_Controller implements Initializable{
-    private final Library library = new Library();
-
-    public void setCollection(ArrayList<Book> collection) {
-        this.library.updateCollection(collection);
-    }
+public class Main_Controller extends controller {
 
     /**
      * method: switchToAdd_Scene
@@ -36,13 +31,7 @@ public class Main_Controller implements Initializable{
      */
     @FXML
     public void switchToAdd_Scene(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Add_Scene.fxml"));
-        Parent root = loader.load();
-
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        switchScene(event, "Add_Scene.fxml");
     }
 
     /**
@@ -52,12 +41,7 @@ public class Main_Controller implements Initializable{
      */
     @FXML
     public void switchToRemove_Scene(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Remove_Scene.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        switchScene(event, "Remove_Scene.fxml");
     }
 
     /**
@@ -67,16 +51,7 @@ public class Main_Controller implements Initializable{
      */
     @FXML
     public void switchToCheckOut_Scene(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("CheckOut_Scene.fxml"));
-        Parent root = loader.load();
-
-        CheckOut_Controller checkOutController = loader.getController();
-        checkOutController.setLibrary(library);
-
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        switchScene(event, "CheckOut_Scene.fxml");
     }
 
     /**
@@ -86,16 +61,7 @@ public class Main_Controller implements Initializable{
      */
     @FXML
     public void switchToCheckIn_Scene(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("CheckIn_Scene.fxml"));
-        Parent root = loader.load();
-
-        CheckIn_Controller checkInController = loader.getController();
-        checkInController.setLibrary(library);
-
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        switchScene(event, "CheckIn_Scene.fxml");
     }
 
     /**
@@ -105,13 +71,7 @@ public class Main_Controller implements Initializable{
      */
     @FXML
     public void switchToDisplay_Scene(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Display_Scene.fxml"));
-        Parent root = loader.load();
-
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        switchScene(event, "Display_Scene.fxml");
     }
 
     /**
@@ -125,8 +85,4 @@ public class Main_Controller implements Initializable{
         stage.close();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
 }
