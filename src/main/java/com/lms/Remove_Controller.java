@@ -5,31 +5,25 @@ import com.lms.model.DatabaseConnection;
 import com.lms.model.Library;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-/*
- * Kevin Bonifacio
+/**
  * CEN 3024 - Software Development 1
- * 07 April 2024
+ * 14 April 2024
  * Remove_Controller.java
  * Controller for the Remove_Scene.fxml
+ * @author Kevin Bonifacio
  */
-public class Remove_Controller implements Initializable {
+public class Remove_Controller extends controller implements Initializable {
 
     Library library = new Library();
 
@@ -53,25 +47,17 @@ public class Remove_Controller implements Initializable {
     @FXML
     private ListView<Book> bookList;
 
-    /*
+    /**
      * method: goBack
-     * parameters: ActionEvent
-     * return: none
+     * @param event ActionEvent
      * purpose: switch the current scene back to the Main_Scene.
      */
     public void goBack(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Main_Scene.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        switchScene(event, "Main_Scene.fxml");
     }
 
-    /*
+    /**
      * method: removeBook
-     * parameters: ActionEvent
-     * return: none
      * purpose: gets user input from the textField and the toggleButton,
      * then calls the appropriate method to removeBookByBarcode or removeBookByTitle.
      */
@@ -122,6 +108,12 @@ public class Remove_Controller implements Initializable {
         }
     }
 
+    /**
+     * method: initialize
+     * purpose: Establishes the database connection and fetch data from it
+     * @param url URL
+     * @param resourceBundle ResourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DatabaseConnection conn = new DatabaseConnection();

@@ -4,54 +4,47 @@ import com.lms.model.Book;
 import com.lms.model.DatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-/*
- * Kevin Bonifacio
+/**
  * CEN 3024 - Software Development 1
- * 07 April 2024
+ * 14 April 2024
  * Display_Controller.java
  * Controller for the Display_Scene.fxml
+ * @author Kevin Bonifacio
  */
-public class Display_Controller implements Initializable {
+public class Display_Controller extends controller implements Initializable {
 
     private final ArrayList<Book> collection = new ArrayList<>();
 
     @FXML
     private ListView<Book> textDisplay;
 
-    /*
+    /**
      * method: goBack
-     * parameters: ActionEvent
-     * return: void
      * purpose: switch the current scene back to the Main_Scene.
+     * @param event ActionEvent
      */
     @FXML
     public void goBack(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Main_Scene.fxml"));
-        Parent root = loader.load();
-
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        switchScene(event, "Main_Scene.fxml");
     }
 
+    /**
+     * method: initialize
+     * purpose: Establishes the database connection and fetch data from it
+     * @param url URL
+     * @param resourceBundle ResourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DatabaseConnection conn = new DatabaseConnection();

@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-/*
- * Kevin Bonifacio
+/**
  * CEN 3024 - Software Development 1
- * 07 April 2024
+ * 14 April 2024
  * DatabaseConnection.java
  * This class establishes a connection to the database.
+ * @author Kevin Bonifacio
  */
 public class DatabaseConnection {
     public Connection conn = null;

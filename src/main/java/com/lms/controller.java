@@ -9,6 +9,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * CEN 3024 - Software Development 1
+ * 14 April 2024
+ * controller.java
+ * Abstract class for all the controllers
+ * @author Kevin Bonifacio
+ */
 public abstract class controller {
     protected void switchScene(ActionEvent event, String fxml) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));

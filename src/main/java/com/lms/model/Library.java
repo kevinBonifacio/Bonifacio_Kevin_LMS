@@ -11,28 +11,24 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-/*
- * Kevin Bonifacio
+/**
  * CEN 3024 - Software Development 1
- * 07 April 2024
+ * 14 April 2024
  * Library.java
  * This class creates a library of books that will contain all the books objects from the text file provided.
+ * @author Kevin Bonifacio
  */
 public class Library {
     DatabaseConnection conn = new DatabaseConnection();
     Connection connectDB = conn.connect();
 
-    private ArrayList<Book> collection = new ArrayList<>();
+    private final ArrayList<Book> collection = new ArrayList<>();
 
-    public void updateCollection(ArrayList<Book> collection) {
-        this.collection = collection;
-    }
-
-    /*
+    /**
      * method: addBooksFromFile
-     * parameters: String
-     * return: boolean
      * purpose: add books from a sample database (Library) to the application database.
+     * @param dataBaseName String
+     * @return boolean
      */
 
     public boolean addBooks(String dataBaseName) {
@@ -94,11 +90,11 @@ public class Library {
         return success;
     }
 
-    /*
+    /**
      * method: removeBookByBarcode
-     * parameters: String
-     * return: boolean
      * purpose: remove a book from the collection using a barcode.
+     * @param barcode String
+     * @return boolean
      */
     public boolean removeBookByBarcode(String barcode) {
         boolean success = false;
@@ -123,11 +119,11 @@ public class Library {
         return success;
     }
 
-    /*
+    /**
      * method: removeBookByTitle
-     * parameters: String
-     * return: boolean
      * purpose: remove a book from the collection using a title.
+     * @param title String
+     * @return boolean
      */
     public boolean removeBookByTitle(String title) {
         boolean success = false;
@@ -152,11 +148,12 @@ public class Library {
         return success;
     }
 
-    /*
+    /**
      * method: checkOutBook
-     * parameters: String
-     * return: String
      * purpose: allows user to borrow (check out) books.
+     * @param title String
+     * @param books ArrayList<Book>
+     * @return String
      */
     public String checkOutBook(String title, ArrayList<Book> books) {
         boolean foundMatch = false;
@@ -198,11 +195,12 @@ public class Library {
         return dateString;
     }
 
-    /*
+    /**
      * method: checkInBook
-     * parameters: String
-     * return: String
      * purpose: allows user to return (check in) books.
+     * @param title String
+     * @param books ArrayList<Book>
+     * @return String
      */
     public String checkInBook(String title, ArrayList<Book> books) {
         boolean foundMatch = false;

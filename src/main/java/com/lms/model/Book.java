@@ -3,13 +3,13 @@ package com.lms.model;
 import java.time.LocalDate;
 import java.util.Random;
 
-/*
- * Kevin Bonifacio
+/**
  * CEN 3024 - Software Development 1
  * 07 April 2024
  * Book.java
  * This class creates an object that will contain all the pertinent information about the books,
  * ensuring an easy and organized access to the variables.
+ * @author Kevin Bonifacio
  */
 public class Book {
     private String barcode;
@@ -65,11 +65,11 @@ public class Book {
         this.dueDate = dueDate;
     }
 
-    /*
+    /**
      * method: generateCode
-     * parameters: (2)String
-     * return: none
      * purpose: Generates a barcode using the title first letter, the author first initial and a random number.
+     * @param a_name String
+     * @param a_title String
      */
     private void generateCode(String a_title, String a_name) {
         Random random = new Random();

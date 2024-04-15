@@ -23,12 +23,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-/*
- * Kevin Bonifacio
+/**
  * CEN 3024 - Software Development 1
- * 07 April 2024
+ * 14 April 2024
  * CheckIn_Controller.java
  * Controller for the CheckIn_Scene.fxml
+ * @author Kevin Bonifacio
  */
 public class CheckIn_Controller implements Initializable {
     private Library library = new Library();
@@ -44,11 +44,10 @@ public class CheckIn_Controller implements Initializable {
         this.library = library;
     }
 
-    /*
+    /**
      * method: goBack
-     * parameters: ActionEvent
-     * return: none
      * purpose: switch the current scene back to the Main_Scene.
+     * @param event ActionEvent
      */
     @FXML
     public void goBack(ActionEvent event) throws IOException {
@@ -60,10 +59,8 @@ public class CheckIn_Controller implements Initializable {
         stage.show();
     }
 
-    /*
+    /**
      * method: checkIn
-     * parameters: ActionEvent
-     * return: none
      * purpose: calls the checkInBook() method.
      */
     public void checkIn() {
@@ -74,6 +71,12 @@ public class CheckIn_Controller implements Initializable {
         dueDate.setVisible(true);
     }
 
+    /**
+     * method: initialize
+     * purpose: Establishes the database connection and fetch data from it
+     * @param url URL
+     * @param resourceBundle ResourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DatabaseConnection conn = new DatabaseConnection();

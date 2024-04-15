@@ -1,33 +1,24 @@
 package com.lms;
 
-import com.lms.model.Book;
-import com.lms.model.Library;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 /**
- * @author Kevin Bonifacio
  * CEN 3024 - Software Development 1
  * 14 April 2024
  * Main_Controller.java
  * Controller for the Main_Scene.fxml
+ * @author Kevin Bonifacio
  */
 public class Main_Controller extends controller {
 
     /**
      * method: switchToAdd_Scene
-     * @param event
      * purpose: Switch the current scene to Add_Scene.
+     * @param event ActionEvent
      */
     @FXML
     public void switchToAdd_Scene(ActionEvent event) throws IOException {
@@ -36,8 +27,8 @@ public class Main_Controller extends controller {
 
     /**
      * method: switchToRemove_Scene
-     * @param event
      * purpose: Switch the current scene to Remove_Scene.
+     * @param event ActionEvent
      */
     @FXML
     public void switchToRemove_Scene(ActionEvent event) throws IOException {
@@ -46,8 +37,8 @@ public class Main_Controller extends controller {
 
     /**
      * method: switchToCheckOut_Scene
-     * @param event
      * purpose: Switch the current scene to CheckOut_Scene.
+     * @param event ActionEvent
      */
     @FXML
     public void switchToCheckOut_Scene(ActionEvent event) throws IOException {
@@ -56,8 +47,8 @@ public class Main_Controller extends controller {
 
     /**
      * method: switchToCheckIn_Scene
-     * @param event
      * purpose: Switch the current scene to CheckIn_Scene.
+     * @param event ActionEvent
      */
     @FXML
     public void switchToCheckIn_Scene(ActionEvent event) throws IOException {
@@ -66,8 +57,8 @@ public class Main_Controller extends controller {
 
     /**
      * method: switchToDisplay_Scene
-     * @param event
      * purpose: Switch the current scene to Display_Scene.
+     * @param event ActionEvent
      */
     @FXML
     public void switchToDisplay_Scene(ActionEvent event) throws IOException {
@@ -76,8 +67,8 @@ public class Main_Controller extends controller {
 
     /**
      * method: exit_out
-     * @param event
      * purpose: Exit the application.
+     * @param event ActionEvent
      */
     @FXML
     public void exit_out(ActionEvent event) {

@@ -24,15 +24,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-/*
- * Kevin Bonifacio
+/**
  * CEN 3024 - Software Development 1
- * 07 April 2024
+ * 14 April 2024
  * CheckOut_Controller.java
  * Controller for the CheckOut_Scene.fxml
+ * @author Kevin Bonifacio
  */
-public class CheckOut_Controller implements Initializable {
-    private Library library = new Library();
+public class CheckOut_Controller extends controller implements Initializable {
+    private final Library library = new Library();
     private final ArrayList<Book> collection = new ArrayList<>();
 
     @FXML
@@ -41,30 +41,18 @@ public class CheckOut_Controller implements Initializable {
     @FXML
     private TextField titleInput;
 
-    public void setLibrary(Library library) {
-        this.library = library;
-    }
-
-    /*
+    /**
      * method: goBack
-     * parameters: ActionEvent
-     * return: none
      * purpose: switch the current scene back to the Main_Scene.
+     * @param event ActionEvent
      */
     @FXML
     public void goBack(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Main_Scene.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        switchScene(event, "Main_Scene.fxml");
     }
 
-    /*
+    /**
      * method: checkOut
-     * parameters: ActionEvent
-     * return: none
      * purpose: calls the checkOutBook() method.
      */
     public void checkOut() {
@@ -75,6 +63,12 @@ public class CheckOut_Controller implements Initializable {
         dueDate.setVisible(true);
     }
 
+    /**
+     * method: initialize
+     * purpose: Establishes the database connection and fetch data from it
+     * @param url URL
+     * @param resourceBundle ResourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DatabaseConnection conn = new DatabaseConnection();
