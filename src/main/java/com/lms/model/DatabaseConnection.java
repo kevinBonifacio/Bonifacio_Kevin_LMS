@@ -15,7 +15,7 @@ public class DatabaseConnection {
     public Connection conn = null;
 
     public Connection connect() {
-        String url = "jdbc:sqlite:database.db";
+        String url = "jdbc:sqlite:collection.db";
 
         try {
             conn = DriverManager.getConnection(url);

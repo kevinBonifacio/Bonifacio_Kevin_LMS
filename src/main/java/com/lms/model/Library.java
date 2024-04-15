@@ -26,7 +26,7 @@ public class Library {
 
     /**
      * method: addBooksFromFile
-     * purpose: add books from a sample database (Library) to the application database.
+     * purpose: add books from a sample database (Test) to the application database.
      * @param dataBaseName String
      * @return boolean
      */
