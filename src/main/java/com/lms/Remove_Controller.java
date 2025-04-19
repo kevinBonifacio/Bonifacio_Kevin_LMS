@@ -7,6 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -17,17 +20,14 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * CEN 3024 - Software Development 1
- * 14 April 2024
  * Remove_Controller.java
  * Controller for the Remove_Scene.fxml
  * @author Kevin Bonifacio
  */
 public class Remove_Controller extends controller implements Initializable {
-
     Library library = new Library();
-
     private final ArrayList<Book> collection = new ArrayList<>();
+    private static final Logger logger = LogManager.getLogger("LOGS");
 
     @FXML
     private ToggleGroup remove;
@@ -74,13 +74,14 @@ public class Remove_Controller extends controller implements Initializable {
                 if(!library.removeBookByBarcode(code)) {
                     removeLabel.setText("This barcode is not part of the collection!");
                     removeLabel.setVisible(true);
+                    logger.warn("Failed to remove book with barcode '{}': not found", code);
                 } else {
                     removeLabel.setText("Book removed!");
                     removeLabel.setVisible(true);
+                    logger.info("Successfully removed book with barcode '{}'", code);
                 }
 
             } else if (titleButton.isSelected()) { //Remove by title option
-
                 for (Book book : collection) {
                     if (book.getTitle().equalsIgnoreCase(code)) {
                         booksToBeRemove.add(book);
@@ -88,13 +89,14 @@ public class Remove_Controller extends controller implements Initializable {
                 }
 
                 if (booksToBeRemove.size() <= 1) {
-
                     if(!library.removeBookByTitle(code)) {
                         removeLabel.setText("This title is not part of the collection!");
                         removeLabel.setVisible(true);
+                        logger.warn("Failed to remove book with title '{}': not found", code);
                     } else {
                         removeLabel.setText("Book removed!");
                         removeLabel.setVisible(true);
+                        logger.info("Successfully removed book with title '{}'", code);
                     }
 
                 } else {
@@ -103,6 +105,7 @@ public class Remove_Controller extends controller implements Initializable {
                     bookList.getItems().addAll(booksToBeRemove);
                     removeLabel.setVisible(true);
                     bookList.setVisible(true);
+                    logger.warn("Multiple books found for title '{}'. Prompted user to use barcode instead.", code);
                 }
             }
         }
@@ -141,7 +144,7 @@ public class Remove_Controller extends controller implements Initializable {
             }
 
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            logger.error("Error initializing book collection from database: {}", e.getMessage(), e);
         }
     }
 }

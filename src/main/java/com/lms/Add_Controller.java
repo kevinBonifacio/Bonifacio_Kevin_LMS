@@ -13,15 +13,13 @@ import java.io.IOException;
 
 
 /**
- * CEN 3024 - Software Development 1
- * 14 April 2024
  * Add_Controller.java
  * Controller for the Add_Scene.fxml
  * @author Kevin Bonifacio
  */
 public class Add_Controller extends controller {
     Library library = new Library();
-    Logger logger = LogManager.getLogger("LOGS");
+    private static final Logger logger = LogManager.getLogger("LOGS");
 
     @FXML
     private TextField fileInput;
@@ -46,13 +44,19 @@ public class Add_Controller extends controller {
     @FXML
     public void addBooks() {
         String dataBaseName = fileInput.getText();
+        logger.debug("Attempting to add books using file: {}", dataBaseName);
 
-        if(library.addBooks(dataBaseName)) {
-            addLabel.setText("Books added successfully");
-            logger.info("Successfully added books from database file: {}", dataBaseName);
-        } else {
-            addLabel.setText("Failed to add books.");
-            logger.error("Failed to add books. Could not locate or read from database file: {}", dataBaseName);
+        try {
+            if (library.addBooks(dataBaseName)) {
+                addLabel.setText("Books added successfully");
+                logger.info("Books added from file: {}", dataBaseName);
+            } else {
+                addLabel.setText("Failed to add books.");
+                logger.warn("Book addition failed — file might not exist or is unreadable: {}", dataBaseName);
+            }
+        } catch (Exception e) {
+            addLabel.setText("An unexpected error occurred.");
+            logger.error("Unexpected exception while adding books from {}: {}", dataBaseName, e.getMessage(), e);
         }
         addLabel.setVisible(true);
     }

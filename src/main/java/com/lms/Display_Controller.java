@@ -6,6 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -16,15 +19,13 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * CEN 3024 - Software Development 1
- * 14 April 2024
  * Display_Controller.java
  * Controller for the Display_Scene.fxml
  * @author Kevin Bonifacio
  */
 public class Display_Controller extends controller implements Initializable {
-
     private final ArrayList<Book> collection = new ArrayList<>();
+    private static final Logger logger = LogManager.getLogger("LOGS");
 
     @FXML
     private ListView<Book> textDisplay;
@@ -75,7 +76,7 @@ public class Display_Controller extends controller implements Initializable {
             System.out.println(collection);
 
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            logger.error("Error initializing book collection from database: {}", e.getMessage(), e);
         }
     }
 }

@@ -7,8 +7,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * CEN 3024 - Software Development 1
- * 14 April 2024
  * Main_Controller.java
  * Controller for the Main_Scene.fxml
  * @author Kevin Bonifacio

@@ -12,8 +12,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
- * CEN 3024 - Software Development 1
- * 14 April 2024
  * Library.java
  * This class creates a library of books that will contain all the books objects from the text file provided.
  * @author Kevin Bonifacio

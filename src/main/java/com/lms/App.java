@@ -11,8 +11,6 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 
 /**
- * CEN 3024 - Software Development 1
- * 14 April 2024
  * App.java
  * This application will prompt the user to select one of the Library Management System options.
  * An 'add' option to add new books to the collection. Two 'remove' options to remove books from the collection by barcode or title.

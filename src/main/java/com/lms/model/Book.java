@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.util.Random;
 
 /**
- * CEN 3024 - Software Development 1
- * 07 April 2024
  * Book.java
  * This class creates an object that will contain all the pertinent information about the books,
  * ensuring an easy and organized access to the variables.

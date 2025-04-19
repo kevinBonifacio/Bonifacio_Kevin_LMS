@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 /**
- * CEN 3024 - Software Development 1
- * 14 April 2024
  * DatabaseConnection.java
  * This class establishes a connection to the database.
  * @author Kevin Bonifacio

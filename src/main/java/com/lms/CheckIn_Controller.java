@@ -26,8 +26,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * CEN 3024 - Software Development 1
- * 14 April 2024
  * CheckIn_Controller.java
  * Controller for the CheckIn_Scene.fxml
  * @author Kevin Bonifacio
@@ -35,8 +33,7 @@ import java.util.ResourceBundle;
 public class CheckIn_Controller implements Initializable {
     private Library library = new Library();
     private final ArrayList<Book> collection = new ArrayList<>();
-
-
+    private static final Logger logger = LogManager.getLogger("LOGS");
 
     @FXML
     private Label dueDate;
@@ -68,10 +65,25 @@ public class CheckIn_Controller implements Initializable {
      * purpose: calls the checkInBook() method.
      */
     public void checkIn() {
-        String title = titleInput.getText();
+        String title = titleInput.getText().trim();
+
+        if (title.isEmpty()) {
+            dueDate.setText("Please enter a title.");
+            dueDate.setVisible(true);
+            logger.warn("Check-in attempted with empty title input.");
+            return;
+        }
+
         String date = library.checkInBook(title, collection);
 
-        dueDate.setText(date);
+        if (date == null || date.isEmpty()) {
+            dueDate.setText("Book not found or already checked in.");
+            logger.warn("Check-in failed for title '{}': not found or already returned.", title);
+        } else {
+            dueDate.setText(date);
+            logger.info("Book with title '{}' checked in successfully.", title);
+        }
+
         dueDate.setVisible(true);
     }
 
@@ -107,7 +119,7 @@ public class CheckIn_Controller implements Initializable {
             }
 
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            logger.error("Error initializing book collection from database: {}", e.getMessage(), e);
         }
     }
 }
