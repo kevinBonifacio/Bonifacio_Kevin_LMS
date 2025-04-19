@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="collection" uuid="fea3b7fd-0172-4949-adfd-3651cf731a9a">
+    <data-source source="LOCAL" name="Test" uuid="62fd2821-efca-47dd-906b-9db164c2a7bc">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\kevin\IdeaProjects\LMS\src\main\resources\collection.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\kevin\IdeaProjects\LMS\Test.db</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
@@ -19,11 +19,11 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Test" uuid="62fd2821-efca-47dd-906b-9db164c2a7bc">
+    <data-source source="LOCAL" name="collection [2]" uuid="5913741c-4e32-438d-a98e-e879285a8303">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\kevin\IdeaProjects\LMS\Test.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\kevin\IdeaProjects\LMS\collection.db</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>

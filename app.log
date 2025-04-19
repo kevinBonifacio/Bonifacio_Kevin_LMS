@@ -1,0 +1,4 @@
+2025-04-19 15:16:04,572 [JavaFX Application Thread] INFO LOGS - Attempted to add book
+2025-04-19 15:16:04,592 [JavaFX Application Thread] ERROR LOGS - Database not found
+2025-04-19 15:23:33,848 [JavaFX Application Thread] INFO LOGS - Attempted to add book
+2025-04-19 15:23:33,871 [JavaFX Application Thread] INFO LOGS - Successfully added books from database file: test

@@ -45,11 +45,7 @@
               <shadedArtifactAttached>true</shadedArtifactAttached>
               <transformers>
                 <transformer>
-                  <mainClass>com.lms.Main</mainClass>
-                </transformer>
-                <transformer>
-                  <resource>src/main/resources/library.db</resource>
-                  <file>library.db</file>
+                  <mainClass>com.lms.App</mainClass>
                 </transformer>
               </transformers>
             </configuration>

@@ -6,6 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 
 
@@ -17,8 +20,8 @@ import java.io.IOException;
  * @author Kevin Bonifacio
  */
 public class Add_Controller extends controller {
-
     Library library = new Library();
+    Logger logger = LogManager.getLogger("LOGS");
 
     @FXML
     private TextField fileInput;
@@ -43,10 +46,13 @@ public class Add_Controller extends controller {
     @FXML
     public void addBooks() {
         String dataBaseName = fileInput.getText();
+
         if(library.addBooks(dataBaseName)) {
-            addLabel.setText("Books added successfully.");
+            addLabel.setText("Books added successfully");
+            logger.info("Successfully added books from database file: {}", dataBaseName);
         } else {
-            addLabel.setText("Database not found");
+            addLabel.setText("Failed to add books.");
+            logger.error("Failed to add books. Could not locate or read from database file: {}", dataBaseName);
         }
         addLabel.setVisible(true);
     }

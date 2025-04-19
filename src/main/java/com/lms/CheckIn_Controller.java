@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +35,8 @@ import java.util.ResourceBundle;
 public class CheckIn_Controller implements Initializable {
     private Library library = new Library();
     private final ArrayList<Book> collection = new ArrayList<>();
+
+
 
     @FXML
     private Label dueDate;
