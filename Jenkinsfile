@@ -1,33 +1,62 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven 3.9.5' // Ensure this matches the name configured in Jenkins
+    environment {
+        STAGING_DIR = 'staging_build'
+        PROD_DIR = 'production_build'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-user/your-repo.git' // or use Jenkins SCM config
+                git 'https://github.com/your-username/your-repo.git'
             }
         }
 
-        stage('Build & Test') {
+        stage('Build') {
             steps {
-                sh 'mvn clean test'
+                sh './mvnw clean install'
             }
         }
 
-        stage('Publish Test Results') {
+        stage('Test') {
             steps {
-                junit 'target/surefire-reports/*.xml'
+                sh './mvnw test'
+            }
+        }
+
+        stage('Deploy to Staging') {
+            steps {
+                echo "Deploying to staging..."
+                // Replace with your staging deployment steps
+                sh 'cp -r target/* $STAGING_DIR'
+            }
+        }
+
+        stage('Manual Approval') {
+            steps {
+                input message: "Deploy to Production?"
+            }
+        }
+
+        stage('Deploy to Production') {
+            steps {
+                echo "Deploying to production..."
+                // Replace with your production deployment steps
+                sh 'cp -r target/* $PROD_DIR'
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+            echo "Cleaning up..."
+        }
+        success {
+            echo "Build completed successfully!"
+        }
+        failure {
+            echo "Build failed. Check logs."
         }
     }
 }
