@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 public class Remove_Controller extends controller implements Initializable {
     Library library = new Library();
     private final ArrayList<Book> collection = new ArrayList<>();
-    private static final Logger logger = LogManager.getLogger("LOGS");
+    private static final Logger logger = LogManager.getLogger(Remove_Controller.class);
 
     @FXML
     private ToggleGroup remove;
@@ -53,6 +53,7 @@ public class Remove_Controller extends controller implements Initializable {
      * purpose: switch the current scene back to the Main_Scene.
      */
     public void goBack(ActionEvent event) throws IOException {
+        logger.info("Navigating back to Main_Scene.fxml");
         switchScene(event, "Main_Scene.fxml");
     }
 

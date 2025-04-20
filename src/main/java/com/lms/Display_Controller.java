@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  */
 public class Display_Controller extends controller implements Initializable {
     private final ArrayList<Book> collection = new ArrayList<>();
-    private static final Logger logger = LogManager.getLogger("LOGS");
+    private static final Logger logger = LogManager.getLogger(Display_Controller.class);
 
     @FXML
     private ListView<Book> textDisplay;
@@ -37,6 +37,7 @@ public class Display_Controller extends controller implements Initializable {
      */
     @FXML
     public void goBack(ActionEvent event) throws IOException {
+        logger.info("Navigating back to Main_Scene.fxml");
         switchScene(event, "Main_Scene.fxml");
     }
 

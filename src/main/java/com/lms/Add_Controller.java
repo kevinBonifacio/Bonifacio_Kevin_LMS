@@ -19,7 +19,7 @@ import java.io.IOException;
  */
 public class Add_Controller extends controller {
     Library library = new Library();
-    private static final Logger logger = LogManager.getLogger("LOGS");
+    private static final Logger logger = LogManager.getLogger(Add_Controller.class);
 
     @FXML
     private TextField fileInput;
@@ -34,6 +34,7 @@ public class Add_Controller extends controller {
      */
     @FXML
     public void goBack(ActionEvent event) throws IOException {
+        logger.info("Navigating back to Main_Scene.fxml");
         switchScene(event, "Main_Scene.fxml");
     }
 

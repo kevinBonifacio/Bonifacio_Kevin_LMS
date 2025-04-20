@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 public class CheckOut_Controller extends controller implements Initializable {
     private final Library library = new Library();
     private final ArrayList<Book> collection = new ArrayList<>();
-    private static final Logger logger = LogManager.getLogger("LOGS");
+    private static final Logger logger = LogManager.getLogger(CheckOut_Controller.class);
 
     @FXML
     private Label dueDate;
@@ -44,6 +44,7 @@ public class CheckOut_Controller extends controller implements Initializable {
      */
     @FXML
     public void goBack(ActionEvent event) throws IOException {
+        logger.info("Navigating back to Main_Scene.fxml");
         switchScene(event, "Main_Scene.fxml");
     }
 
@@ -58,6 +59,12 @@ public class CheckOut_Controller extends controller implements Initializable {
         if (title == null || title.trim().isEmpty()) {
             logger.warn("User tried to check out a book with an empty title.");
             removeDueDate();  // Optional: clear the due date label if title is empty
+            return;
+        }
+
+        //Simulated checkout error
+        if (title.equals("?")) {
+            logger.error("Error during checkout");
             return;
         }
 

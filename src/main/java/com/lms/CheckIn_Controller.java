@@ -33,7 +33,7 @@ import java.util.ResourceBundle;
 public class CheckIn_Controller implements Initializable {
     private Library library = new Library();
     private final ArrayList<Book> collection = new ArrayList<>();
-    private static final Logger logger = LogManager.getLogger("LOGS");
+    private static final Logger logger = LogManager.getLogger(CheckIn_Controller.class);
 
     @FXML
     private Label dueDate;
@@ -52,6 +52,7 @@ public class CheckIn_Controller implements Initializable {
      */
     @FXML
     public void goBack(ActionEvent event) throws IOException {
+        logger.info("Navigating back to Main_Scene.fxml");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Main_Scene.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -74,17 +75,10 @@ public class CheckIn_Controller implements Initializable {
             return;
         }
 
-        String date = library.checkInBook(title, collection);
-
-        if (date == null || date.isEmpty()) {
-            dueDate.setText("Book not found or already checked in.");
-            logger.warn("Check-in failed for title '{}': not found or already returned.", title);
-        } else {
-            dueDate.setText(date);
-            logger.info("Book with title '{}' checked in successfully.", title);
-        }
-
+        String resultMessage =  library.checkInBook(title, collection);
+        dueDate.setText(resultMessage);
         dueDate.setVisible(true);
+        logger.info("Check-in result for '{}': {}", title, resultMessage);
     }
 
     /**
